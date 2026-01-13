@@ -7,12 +7,13 @@
 
 import Foundation
 import Supabase
+import Combine
 
 
 //MARK: May change String returns in function header to Bool to make auth bugs easier to detect
 
 
-final class authManager{
+final class authManager: ObservableObject {
     
     var logicHelper = logicManager()
     
@@ -22,38 +23,38 @@ final class authManager{
     let client = SupabaseClient(supabaseURL: URL(string: "https://fitvglyfcbejboduqbes.supabase.co")!, supabaseKey: "sb_publishable_lSmcWJUZYvYtVE0p2hra9Q_VdYhTKOf")
     
     
-    func signIn(email: String, password: String) async throws -> String {
+    func signIn(email: String, password: String) async throws -> Bool {
         
         
         do{
             try await client.auth.signIn(email: email, password: password)
             print("Success")
-            return "Successful Sign-In"
+            return true
         }
         catch{
             print(error.localizedDescription)
-            return "Something went wrong"
+            return false
         }
     }
     
-    func signUp(email: String, password: String) async throws -> String {
+    func signUp(email: String, password: String) async throws -> Bool {
         
         if logicHelper.validEmail(email: email) == true && logicHelper.validPassword(password: password) == true {
             
             do{
                 try await client.auth.signUp(email: email, password: password)
-                return "Sucessful Sign Up"
+                return true
                 
             }
             catch{
                 print(error.localizedDescription)
-                return "Something went wrong"
+                return false
             }
             
             
         }
         else{
-            return "Did not pass validation for sign up"
+            return false
         }
         
     }

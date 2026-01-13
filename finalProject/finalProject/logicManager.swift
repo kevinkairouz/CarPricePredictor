@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 
-final class logicManager{
+final class logicManager: ObservableObject {
+    
+    
     
     func validEmail(email: String) -> Bool {
         

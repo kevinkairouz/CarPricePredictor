@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SignUp: View {
     
     @State var color1: Color = .green
     @State var color2: Color = .gray
@@ -35,7 +35,7 @@ struct ContentView: View {
                 LinearGradient(colors: [color1, color2], startPoint: .top, endPoint: .bottomTrailing).ignoresSafeArea().animation(.easeInOut.speed(0.25).repeatForever(autoreverses: true), value: color1)
                 
                 VStack{
-                    Text("Welcome Back")
+                    Text("Create an Account")
                         .font(.system(size: 33, weight: .semibold, design: .serif))
                     Spacer()
                 }.padding(.top, 135)
@@ -81,7 +81,7 @@ struct ContentView: View {
                             h = 30
                             w = 30
                             Task{
-                                let res = try await authenManger.signIn(email: emailSubmitted, password: passwordSubmitted)
+                                let res = try await authenManger.signUp(email: emailSubmitted, password: passwordSubmitted)
                                 
                                 if res == true{
                                     showFormView.toggle()
@@ -96,7 +96,7 @@ struct ContentView: View {
                             Text("Sign-In")
                         }
                         .frame(width: 330, height: 60)
-                        .background(.green)
+                        .background(LinearGradient(colors: [.gray, .green], startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(12)
                         .foregroundStyle(.black)
                         .fontWeight(.black)
@@ -124,19 +124,7 @@ struct ContentView: View {
                     
                 }
                 
-                VStack{
-                    Spacer()
-                    HStack{
-                        Text("Don't Have Account?")
-                        NavigationLink("Sign-Up"){
-                            SignUp()
-                        }
-                            .foregroundStyle(.white)
-                            .shadow(color: .blue, radius: 12)
-                        
-                    }
-                }.padding(.bottom, 150)
-                
+         
                 
                 
                 
@@ -161,6 +149,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SignUp()
 }
 
