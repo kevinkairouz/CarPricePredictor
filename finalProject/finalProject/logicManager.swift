@@ -20,7 +20,6 @@ final class logicManager{
         }
         
     }
-    
     func validPassword(password: String) -> Bool {
         
         let stringCount = password.count
