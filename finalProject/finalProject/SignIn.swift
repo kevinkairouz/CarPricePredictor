@@ -15,6 +15,11 @@ struct ContentView: View {
     @State var emailSubmitted: String = ""
     @State var passwordSubmitted: String = ""
     
+    @State var airplane_placement: Int = -145
+    
+    @State var h: Int = 20
+    @State var w: Int = 20
+    
     var body: some View {
         
         NavigationStack{
@@ -59,7 +64,9 @@ struct ContentView: View {
                     VStack{
                         Spacer()
                         Button {
-                            
+                            airplane_placement = 145
+                            h = 30
+                            w = 30
                         } label: {
                             Text("Sign-In")
                         }
@@ -68,17 +75,28 @@ struct ContentView: View {
                         .cornerRadius(12)
                         .foregroundStyle(.black)
                         .fontWeight(.black)
+                        .shadow(radius: 10)
+                        
                         
                     }.padding(.bottom, 200)
                     
                     VStack{
                         Spacer()
                         Image(systemName: "airplane")
+                            .resizable()
+                            .frame(width: CGFloat(w), height: CGFloat(h))
+                            .animation(.easeIn.speed(0.2), value: h)
+                            .animation(.easeIn.speed(0.2), value: w)
+                            .animation(.smooth.speed(0.5), value: airplane_placement)
                             //MARK: make airplane bigger and when the button is tapped, make sure that the airplane gets bigger and flies to the end of the sign-in button and then takes you to home page t
                         
-                    }.padding(.bottom, 220).offset(x: -145)
+                    }.padding(.bottom, 220).offset(x: CGFloat(airplane_placement))
+                        .shadow(radius: 10)
+                    
                     
                 }
+                
+                
                 
 
                 
