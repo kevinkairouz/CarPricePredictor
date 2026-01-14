@@ -27,6 +27,10 @@ struct Result: Codable{
 
 final class apiFetcher: ObservableObject{
     
+    func fetchData() async throws -> Result {
+        return Result(price: 1)
+    }
+    
     
     
     
