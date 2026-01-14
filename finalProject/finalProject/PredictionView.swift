@@ -11,7 +11,9 @@ import Charts
 
 //MARK: make the api call inside of the form view when the button is pressed and then use binding to pass the data to the next screen to display the money and use animation to display the money
 
-//or import charts
+//MARK: it is possible we may need to make the data type for state prediction into Result data type since we have to decode from JSON formatted data
+
+//MARK: add animation to the words and have them animate indefinetly with option to make another prediction
 
 struct PredictionView: View {
     
@@ -19,13 +21,35 @@ struct PredictionView: View {
     @State var color2: Color = .gray
     
     
+    @State var firstPart: String = "Your Car is Estimated"
+    @State var secondPart: String = "to be worth"
+    @State var prediction: String = ""
+    
+    @State var messagePrediction: String = "" 
+    
+    
     var body: some View {
         ZStack{
             
             LinearGradient(colors: [color1, color2], startPoint: .top, endPoint: .bottomTrailing).ignoresSafeArea().animation(.easeInOut.speed(0.25).repeatForever(autoreverses: true), value: color1)
             
+            VStack{
+                Text(firstPart)
             
-            Text("Prediction Screen")
+                Text(secondPart)
+                Spacer()
+            }
+            .font(.title)
+             .font(.headline)
+             .fontWeight(.black)
+             .bold()
+             .foregroundStyle(.background)
+             .padding(.top, 150)
+            
+            
+                
+
+                
         }
     }
 }
