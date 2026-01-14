@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct CarInfo{
+struct CarInfo: Codable{
     let Brand: String
     let Year: Int
     let EngineSize: Int
@@ -18,6 +18,10 @@ struct CarInfo{
     let Condition: String
     let Model: String
 
+}
+
+struct Result: Codable{
+    let price: Float
 }
 
 
