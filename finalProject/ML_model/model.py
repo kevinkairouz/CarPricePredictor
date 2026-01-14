@@ -7,7 +7,6 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import recall_score 
 
 df = pd.read_csv("car_price_prediction_.csv")
-
 Y = df[["Price"]]
 X = df.drop(["Car ID", "Price"], axis=1) 
 X = pd.get_dummies(X, columns=["Brand", "Fuel Type", "Transmission", "Condition", "Model"]) 
@@ -22,11 +21,11 @@ class Codey:
     
 
     def train(): 
-        return None
+        X_train, X_test, Y_train, Y_test = 0 #placeholder
 
     
 
-    def predict():  
+    def predict(): 
 
         """ 
         this function will use train as a helper function in order to train the model and take a param 
