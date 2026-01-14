@@ -21,11 +21,12 @@ struct PredictionView: View {
     @State var color2: Color = .gray
     
     
-    @State var firstPart: String = "Your Car is Estimated"
-    @State var secondPart: String = "to be worth"
+    
+    @State var firstPart: String = ""
+    @State var secondPart: String = ""
     @State var prediction: String = ""
     
-    @State var messagePrediction: String = "" 
+    @State var messagePrediction: String = ""
     
     
     var body: some View {
@@ -45,10 +46,17 @@ struct PredictionView: View {
              .bold()
              .foregroundStyle(.background)
              .padding(.top, 150)
+             .animation(.bouncy.speed(0.2).delay(0.5), value: firstPart)
+             .animation(.bouncy.speed(0.2).delay(0.5), value: secondPart)
             
             
                 
+             .onAppear(){
+                 firstPart = "Your car is estimated"
+                 secondPart = "to be worth..."
+                 
 
+             }
                 
         }
     }
