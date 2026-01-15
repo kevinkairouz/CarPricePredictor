@@ -67,7 +67,6 @@ class Codey:
         self.model.fit(X_train, Y_train)   
         Y_predicted = self.model.predict(user_X) 
         return Y_predicted 
-    
     def test(self): 
         X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42)  
         self.model.fit(X_train, Y_train) 
@@ -75,9 +74,9 @@ class Codey:
          
     
 
-codey = Codey() 
+# codey = Codey() used to test r2 score
 
-codey.test()
+# codey.test()
 
           
 
