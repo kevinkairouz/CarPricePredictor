@@ -11,24 +11,19 @@ import Combine
 struct CarInfo: Codable{
     let Brand: String
     let Year: Int
-    let EngineSize: Int
-    let FuelType: String
-    let Transmission: String
-    let Mileage: Int
-    let Condition: String
-    let Model: String
+    let Miles: Int
 
 }
 
 struct Result: Codable{
-    let price: Float
+    let Price: Float
 }
 
 
 final class apiFetcher: ObservableObject{
     
     func fetchData(X: CarInfo) async throws -> Result {
-        return Result(price: 1)
+        return Result(Price: 1)
     }
     
     
