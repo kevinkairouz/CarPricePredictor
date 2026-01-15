@@ -2,7 +2,11 @@ from flask import Flask, jsonify, request
 import model 
 
 app = Flask(__name__) 
-CodeyCopy = model.Codey()
+CodeyCopy = model.Codey() 
+
+@app.route("/") 
+def welcomeMessage(): 
+    return "You are currently running Kevin's Car Price Predictior API!!"
 
 @app.route("/predict", methods = ["POST"]) 
 def makePrediction(user_X):  
