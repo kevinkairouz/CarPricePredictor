@@ -14,16 +14,21 @@ X = pd.get_dummies(X, columns=["Brand", "Fuel Type", "Transmission", "Condition"
 
 class Codey: 
 
-    def __init__(self, modelA, modelB): 
-        modelA = LinearRegression()  
-        modelB = RandomForestRegressor() 
+    def __init__(self): 
+        self.modelA = LinearRegression()
+        self.modelB = RandomForestRegressor() 
+        
     
+    
+    def train(self): 
+        X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42, stratify=Y)   
+        self.modelA.fit(X_train, Y_train) 
+        
+        
+        
+        
 
-    def train(): 
-        X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42, stratify=Y)
-
-
-    def predict(): 
+    def predict(self): 
 
         """ 
         this function will use train as a helper function in order to train the model and take a param 
