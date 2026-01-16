@@ -23,7 +23,10 @@ def makePrediction():
         
     else: 
         return "Problem with this route" 
-    
+
+@app.route("/test") 
+def testRoute(): 
+    return "testing, you have reached /test"
     
 def run():
     app.run()
