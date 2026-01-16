@@ -36,7 +36,6 @@ final class apiFetcher: ObservableObject{
         let decoder = JSONDecoder()
         let res = try decoder.decode(Result.self, from: d)
         return res.Price
-        
     }
     
 }

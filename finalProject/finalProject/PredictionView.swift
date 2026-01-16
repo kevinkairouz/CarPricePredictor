@@ -85,7 +85,7 @@ struct PredictionView: View {
                      .fontWeight(.black)
                      .bold()
                      .foregroundStyle(.background)
-                     .animation(.bouncy.speed(0.5), value: messagePrediction)
+                     .animation(.bouncy.speed(0.25), value: messagePrediction)
                     
             }.padding(.bottom, 320)
             
@@ -105,7 +105,8 @@ struct PredictionView: View {
                 }
             }.padding(.bottom, 175)
             
-            //MARK: make two buttons, one to go again and another to sign out
+            
+            
             
             VStack{
                 Spacer()
@@ -114,8 +115,9 @@ struct PredictionView: View {
                     
                 } label: {
                     HStack{
-                        Image(systemName: "trash")
-                    }
+                        Image(systemName: "car")
+                        Text("Calculate Again")
+                    }.foregroundStyle(.black).fontWeight(.semibold)
                 }
 
             }

@@ -32,7 +32,11 @@ struct FormView: View {
     @State var showPredictionScreen: Bool = false
     @State var predictedPrice: Float = 0.0
     
+    @State var X_input: CarInfo = CarInfo(Brand: "", Year: 0, Miles: 0)
+    
     let categories: [String] = ["Brand", "Year", "Miles"]
+    
+    @StateObject var api_manager = apiFetcher()
     
     
     var body: some View {
@@ -117,7 +121,16 @@ struct FormView: View {
                             
                         }
                         else{
-                            showPredictionScreen.toggle()
+                            let y = Int(YearSubmitted)
+                            let m = Int(MilesSubmitted)
+                            X_input = CarInfo(Brand: BrandSubmitted, Year: y ?? 0 , Miles: m ?? 0)
+                            Task{
+                                
+                                let res = try await api_manager.fetchData(X: X_input)
+                                predictedPrice = res
+                                showPredictionScreen.toggle()
+                            }
+                            
                         }
                     } label: {
                         Text("Predict Value")
