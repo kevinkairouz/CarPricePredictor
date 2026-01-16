@@ -6,22 +6,14 @@
 //
 
 import SwiftUI
-import Charts
-
-
-//MARK: make the api call inside of the form view when the button is pressed and then use binding to pass the data to the next screen to display the money and use animation to display the money
-
-//MARK: it is possible we may need to make the data type for state prediction into Result data type since we have to decode from JSON formatted data
-
-//MARK: add animation to the words and have them animate indefinetly with option to make another prediction
-
-//MARK: use a binding because you are going to make api
 
 struct PredictionView: View {
     
     @State var color1: Color = .green
     @State var color2: Color = .gray
     
+    @State var showSignIn: Bool = false
+    @State var showFormView: Bool = false
     
     
     @State var firstPart: String = ""
@@ -34,12 +26,8 @@ struct PredictionView: View {
     @State var finish = 0.6
     
     @Binding var predictedPrice: Float
-    
-    
-    
-    
-    
-    
+ 
+    @StateObject var auth = authManager()
     var body: some View {
         
         
@@ -106,21 +94,50 @@ struct PredictionView: View {
             }.padding(.bottom, 175)
             
             
-            
+
             
             VStack{
                 Spacer()
                 
-                Button {
+                HStack(spacing: 30){
+                    Button {
+                        showFormView.toggle()
+                    } label: {
+                        HStack{
+                            Image(systemName: "car")
+                            Text("Calculate Again")
+                        }.foregroundStyle(.black).fontWeight(.semibold)
+                    }.frame(width: 173, height: 50).background(.white).cornerRadius(12)
+                        .fullScreenCover(isPresented: $showSignIn) {
+                            FormView()
+                        }
                     
-                } label: {
-                    HStack{
-                        Image(systemName: "car")
-                        Text("Calculate Again")
-                    }.foregroundStyle(.black).fontWeight(.semibold)
-                }
+                    Button {
+                        Task{
+                            _ = try await auth.signOut()
+                            showSignIn.toggle()
+                            
+                        }
+                        
+                    } label: {
+                        HStack{
+                            Image(systemName: "exclamationmark.octagon").foregroundStyle(.green)
+                            Text("Sign-Out").foregroundStyle(.green.opacity(0.5))
+                            
+                            
+                        }
+                       
+                    }.frame(width: 150, height: 52).background(.black).cornerRadius(12)
+                        .fullScreenCover(isPresented: $showSignIn) {
+                            ContentView()
+                        }
 
-            }
+                    
+                }
+                
+                
+
+            }.padding(.bottom, 50)
             
             
                 
