@@ -11,6 +11,10 @@ import SwiftUI
 struct startView: View{
     @StateObject var audio_manager = audioManager()
     
+    @AppStorage("completeOB") var completeOB = false
+    @AppStorage("isSignedIn") var isSignedIn = false
+
+    
     
     var body: some View{
         ZStack{
@@ -19,13 +23,19 @@ struct startView: View{
                 [0.0, 0.5], [1.0,0.5],
                 [0.0, 1.0], [1.0, 1.0]], colors: [.green, .gray, .black, .gray, .gray, .green]).ignoresSafeArea()
             
-            TabView {
-                OnboardingView()
-                moneyOnboardingView()
-                youReadyView()
-            }.tabViewStyle(.page)
-            
-                
+            if !completeOB{
+                TabView {
+                    OnboardingView()
+                    moneyOnboardingView()
+                    youReadyView()
+                }.tabViewStyle(.page)
+            }
+            else if !isSignedIn{
+                ContentView()
+            }
+            else{
+                FormView()
+            }
         }
         
     }
@@ -141,6 +151,8 @@ struct youReadyView: View {
     @State var message2: String = ""
     @State var isPressed = false
     @State var showSignIn = false
+    @AppStorage("completeOB") var completeOB = false
+
     
     var body: some View {
         ZStack{
@@ -187,6 +199,7 @@ struct youReadyView: View {
                         .offset(y: 5)
                     Button {
                         isPressed = true
+                        completeOB = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.37) {
                             isPressed = false
                             showSignIn = true
@@ -205,9 +218,9 @@ struct youReadyView: View {
                         .shadow(radius: 12)
                         .offset(y: isPressed ? 0 : -5)
                         .animation(.easeInOut(duration: 0.37), value: isPressed)
-                        .fullScreenCover(isPresented: $showSignIn) {
-                            ContentView()
-                        }
+//                        .fullScreenCover(isPresented: $showSignIn) {
+//                            ContentView()
+//                        }
                     
                     
                     

@@ -11,6 +11,8 @@ import SwiftUI
 import AuthenticationServices
 
 struct ContentView: View {
+    @AppStorage("isSignedIn") var isSignedIn = false
+
     @StateObject var audio_manager = audioManager()
     @State var color1: Color = .green
     @State var color2: Color = .gray
@@ -25,7 +27,7 @@ struct ContentView: View {
     
     @State var popUpMessage: String = ""
     
-    @State var showFormView: Bool = false
+//    @State var showFormView: Bool = false
     
     
     @StateObject var authenManger = authManager()
@@ -87,7 +89,8 @@ struct ContentView: View {
                                 let res = try await authenManger.signIn(email: emailSubmitted, password: passwordSubmitted)
                                 
                                 if res == true{
-                                    showFormView.toggle()
+                                    isSignedIn = true
+//                                    showFormView.toggle()
                                 }
                                 else{
                                     popUpMessage = "Something Wrong"
@@ -104,9 +107,9 @@ struct ContentView: View {
                         .foregroundStyle(.black)
                         .fontWeight(.black)
                         .shadow(radius: 10)
-                        .fullScreenCover(isPresented: $showFormView) {
-                            FormView()
-                        }
+//                        .fullScreenCover(isPresented: $showFormView) {
+//                            FormView()
+//                        }
                         
                         
                     }.padding(.bottom, 200)
