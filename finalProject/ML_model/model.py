@@ -62,11 +62,20 @@ class Codey:
 
     def __init__(self): 
         self.model = RandomForestRegressor()
-    def predict(self, user_X): 
-        X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42)   
-        self.model.fit(X_train, Y_train)   
-        Y_predicted = self.model.predict(user_X) 
-        return Y_predicted 
+    def predict(self, user_X):
+        X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42)
+        self.model.fit(X_train, Y_train)
+        brand, year, miles = user_X
+        input_data = {col: 0 for col in X.columns}
+        input_data["Year"] = year
+        input_data["Miles"] = miles
+        brand_col = f"Brand_{brand}"
+        if brand_col in input_data:
+            input_data[brand_col] = 1
+        
+        input_df = pd.DataFrame([input_data], columns=X.columns)
+        Y_predicted = self.model.predict(input_df)
+        return float(Y_predicted[0]) 
     def test(self): 
         X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42)  
         self.model.fit(X_train, Y_train) 
@@ -74,7 +83,7 @@ class Codey:
          
     
 
-# codey = Codey() used to test r2 score
+# codey = Codey() 
 
 # codey.test()
 

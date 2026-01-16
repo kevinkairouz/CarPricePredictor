@@ -25,7 +25,8 @@ def makePrediction():
         return "Problem with this route" 
     
     
-def run():  
-    app.run() 
+def run():
+    app.run()
 
-run() 
+if __name__ == "__main__":
+    run() 
