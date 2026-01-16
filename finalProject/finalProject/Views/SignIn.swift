@@ -5,7 +5,10 @@
 //  Created by Kev on 1/12/26.
 //
 
+
+//MARK: create sign in with apple, sign in with apple flow and copy paste your functions from prior project so app can be published in the app store 
 import SwiftUI
+import AuthenticationServices
 
 struct ContentView: View {
     @StateObject var audio_manager = audioManager()
