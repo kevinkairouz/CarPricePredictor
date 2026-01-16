@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct startView: View{
+    @StateObject var audio_manager = audioManager()
+    
     
     var body: some View{
         ZStack{
@@ -22,6 +24,8 @@ struct startView: View{
                 moneyOnboardingView()
                 youReadyView()
             }.tabViewStyle(.page)
+            
+                
         }
         
     }
@@ -31,6 +35,8 @@ struct OnboardingView: View {
     
     @State var carPlacement: Int = 0
     @State var message: String = ""
+    
+    @StateObject var audio_Manager = audioManager()
 
     var body: some View {
         ZStack{
@@ -67,6 +73,7 @@ struct OnboardingView: View {
         }.onAppear(){
             carPlacement += 329
             message = "Welcome to Codey Car Predictor"
+            audio_Manager.playMusic(named: "song_for_app")
         }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @StateObject var audio_manager = audioManager()
     @State var color1: Color = .green
     @State var color2: Color = .gray
     
@@ -156,6 +156,7 @@ struct ContentView: View {
         .onAppear {
             color1 = .gray
             color2 = .green
+            audio_manager.stopMusic()
         }
     }
 }
