@@ -11,17 +11,14 @@ def welcomeMessage():
 
 @app.route("/predict", methods = ["POST"]) 
 def makePrediction():   
-    user_X = [] 
-
     if request.method == "POST":   
         json_data = request.get_json() 
         brand = json_data.get("Brand") 
         year = json_data.get("Year") 
-        miles = json_data.get("Miles")
-         
-        
+        miles = json_data.get("Miles") 
+        user_X = [brand, year, miles] 
         prediction_for_user = CodeyCopy.predict(user_X)  
-        response = {"price": prediction_for_user} 
+        response = {"Price": prediction_for_user} 
         return jsonify(response)
         
     else: 
