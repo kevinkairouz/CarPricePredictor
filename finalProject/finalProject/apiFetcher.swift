@@ -21,13 +21,20 @@ struct Result: Codable{
     let Price: Float
 }
 final class apiFetcher: ObservableObject{
-        
+    
+    let url = "http://127.0.0.1:5000/predict"
     func fetchData(X: CarInfo) async throws -> Float {
         
-        let url = URL(string: "http://127.0.0.1:5000/predict")!
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(X)
+        request.httpBody = data
+        let (d, _) = try await URLSession.shared.data(for: request)
         let decoder = JSONDecoder()
-        let res = try decoder.decode(Result.self, from: data)
+        let res = try decoder.decode(Result.self, from: d)
         return res.Price
         
     }

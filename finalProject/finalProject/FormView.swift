@@ -27,15 +27,12 @@ struct FormView: View {
     
     @State var BrandSubmitted: String = ""
     @State var YearSubmitted: String = ""
-    @State var EngineSizeSubmitted: String = ""
-    @State var FuelTypeSubmitted: String = ""
-    @State var TransmissionSubmitted: String = ""
-    @State var MileageSubmitted: String = ""
-    @State var ConditionSubmitted: String = ""
-    @State var ModelSubmitted: String = ""
+    @State var MilesSubmitted: String = ""
     @State var popUpMessage: String = ""
+    @State var showPredictionScreen: Bool = false
+    @State var predictedPrice: Float = 0.0
     
-    let categories: [String] = ["Brand", "Year", "Engine Size", "Fuel Type", "Transmission", "Mileage", "Condition", "Model"]
+    let categories: [String] = ["Brand", "Year", "Miles"]
     
     
     var body: some View {
@@ -69,7 +66,7 @@ struct FormView: View {
             ScrollView(){
                 VStack{
                     Spacer()
-                        .frame(height: 420)
+                        .frame(height: 100)
                     
                     Text("Enter Car Details")
                         .font(.largeTitle)
@@ -99,7 +96,7 @@ struct FormView: View {
                         .autocapitalization(.none)
                     
                     
-                    TextField("Engine Size", text: $EngineSizeSubmitted)
+                    TextField("Miles", text: $MilesSubmitted)
                         .padding()
                         .background(.gray.opacity(0.8))
                         .cornerRadius(100)
@@ -110,70 +107,17 @@ struct FormView: View {
                         .autocorrectionDisabled()
                         .autocapitalization(.none)
                     
-                    TextField("Fuel Type", text: $FuelTypeSubmitted)
-                        .padding()
-                        .background(.gray.opacity(0.8))
-                        .cornerRadius(100)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .shadow(radius: 8)
-                        .autocorrectionDisabled()
-                        .autocapitalization(.none)
                     
-                    TextField("Transmission", text: $TransmissionSubmitted)
-                        .padding()
-                        .background(.gray.opacity(0.8))
-                        .cornerRadius(100)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .shadow(radius: 8)
-                        .autocorrectionDisabled()
-                        .autocapitalization(.none)
-                    
-                    TextField("Mileage", text: $MileageSubmitted)
-                        .padding()
-                        .background(.gray.opacity(0.8))
-                        .cornerRadius(100)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .shadow(radius: 8)
-                        .autocorrectionDisabled()
-                        .autocapitalization(.none)
-                    
-                    TextField("Condition", text: $ConditionSubmitted)
-                        .padding()
-                        .background(.gray.opacity(0.8))
-                        .cornerRadius(100)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .shadow(radius: 8)
-                        .autocorrectionDisabled()
-                        .autocapitalization(.none)
-                    
-                    TextField("Model", text: $ModelSubmitted)
-                        .padding()
-                        .background(.gray.opacity(0.8))
-                        .cornerRadius(100)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .shadow(radius: 8)
-                        .autocorrectionDisabled()
-                        .autocapitalization(.none)
                     
                     
                     Button {
-                        if BrandSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || YearSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || EngineSizeSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || FuelTypeSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || TransmissionSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || MileageSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || ConditionSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || ModelSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true{
+                        if BrandSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || YearSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true || MilesSubmitted.trimmingCharacters(in: .whitespaces).isEmpty == true{
                             
                             popUpMessage = "Invalid Details"
                             
                         }
                         else{
-                            
+                            showPredictionScreen.toggle()
                         }
                     } label: {
                         Text("Predict Value")
@@ -183,6 +127,9 @@ struct FormView: View {
                         .background(.black)
                         .cornerRadius(12)
                         .shadow(radius: 10)
+                        .fullScreenCover(isPresented: $showPredictionScreen) {
+                            PredictionView(predictedPrice: $predictedPrice)
+                        }
                         
                     
                     
@@ -207,7 +154,7 @@ struct FormView: View {
 }
 
 #Preview {
-   FormView()
+    FormView()
 }
 
 
