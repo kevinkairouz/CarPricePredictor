@@ -108,7 +108,7 @@ struct PredictionView: View {
                             Text("Calculate Again")
                         }.foregroundStyle(.black).fontWeight(.semibold)
                     }.frame(width: 173, height: 50).background(.white).cornerRadius(12)
-                        .fullScreenCover(isPresented: $showSignIn) {
+                        .fullScreenCover(isPresented: $showFormView) {
                             FormView()
                         }
                     
