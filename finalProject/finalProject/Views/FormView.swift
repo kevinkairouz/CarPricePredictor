@@ -124,15 +124,21 @@ struct FormView: View {
                         else{
                             let y = Int(YearSubmitted)
                             let m = Int(MilesSubmitted)
-                            X_input = CarInfo(Brand: BrandSubmitted, Year: y ?? 0 , Miles: m ?? 0)
+                            let b = BrandSubmitted
                             Task{
-                                
-                                try await db.sendCarInfo(info: X_input)
-                                let res = try await api_manager.fetchData(X: X_input)
-                                predictedPrice = res
-                                let r = Result(Price: res)
-                                try await db.sendResult(price: r)
-                                showPredictionScreen.toggle()
+                                do{
+                                    let car_info = r(brand: b, miles: m!, year: y!)
+                                    let res = try await api_manager.fetchData(X: X_input)
+                                    try await db.sendCarInfo(info: car_info)
+                                    let price_info = p(amount: res)
+                                    try await db.sendResult(price: price_info)
+                                    predictedPrice = res
+                                    showPredictionScreen.toggle()
+                                }
+                                catch{
+                                    print(error.localizedDescription)
+                                }
+    
                             }
                             
                         }
