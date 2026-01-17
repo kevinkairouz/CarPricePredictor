@@ -42,6 +42,7 @@ struct ContentView: View {
                 VStack{
                     Text("Welcome Back")
                         .font(.system(size: 33, weight: .semibold, design: .serif))
+                        .shadow(radius: 10)
                     Spacer()
                 }.padding(.top, 135)
                 
@@ -143,6 +144,16 @@ struct ContentView: View {
                     }
                 }.padding(.bottom, 150)
                 
+                
+                VStack{
+                    HStack{
+                        Capsule()
+                            .fill(.white.opacity(0.15 ))
+                            .blur(radius: 12)
+                            .frame(width: 300, height: 100)
+                    }
+                    Spacer()
+                }.padding(.top)
                 
                 
                 

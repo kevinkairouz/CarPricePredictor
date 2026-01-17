@@ -15,8 +15,8 @@ import SwiftUI
 //
 
 //MARK: create a tab bar that has two options, predictions, settings
-//MARK: also use pageview for tabs in order to create an onboarding view for the app!!
-//MARK: bonus (create sign-in with google) 
+
+
 
 import SwiftUI
 
