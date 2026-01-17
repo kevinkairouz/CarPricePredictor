@@ -13,7 +13,7 @@ import Combine
 //MARK: May change String returns in function header to Bool to make auth bugs easier to detect
 
 
-final class authManager: ObservableObject {
+class authManager: ObservableObject {
     
     var logicHelper = logicManager()
     
