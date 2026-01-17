@@ -19,6 +19,7 @@ def makePrediction():
         user_X = [brand, year, miles] 
         prediction_for_user = CodeyCopy.predict(user_X)  
         response = {"Price": prediction_for_user} 
+        print("you have succesfully made a prediction and sent to app")
         return jsonify(response)
         
     else: 
