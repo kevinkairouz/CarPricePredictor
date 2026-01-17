@@ -14,6 +14,8 @@ struct PredictionView: View {
     
     @State var showSignIn: Bool = false
     @State var showFormView: Bool = false
+    @State var showOB: Bool = false
+
     
     
     @State var firstPart: String = ""
@@ -138,6 +140,22 @@ struct PredictionView: View {
                 
 
             }.padding(.bottom, 50)
+            
+            
+            VStack{
+                Spacer()
+                Button("View Onboarding"){
+                    showOB.toggle()
+                }
+                .frame(width: 130, height: 50)
+                .background(.teal)
+                .foregroundStyle(.black)
+                .shadow(radius: 10)
+                .cornerRadius(12)
+                .fullScreenCover(isPresented: $showOB) {
+                    startView()
+                }
+            }.offset(y: 10)
             
             
                 
