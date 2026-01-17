@@ -56,15 +56,14 @@ df = pd.get_dummies(df,columns=["Brand"])
 Y = df["Price"]
 X = df.drop(["Price", "Name"], axis=1)  
 
+class Codey:
 
-
-class Codey: 
-
-    def __init__(self): 
+    def __init__(self):
         self.model = RandomForestRegressor()
-    def predict(self, user_X):
-        X_train, X_test, Y_train, Y_test = train_test_split(X,Y, train_size=0.8, random_state=42)
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.8, random_state=42)
         self.model.fit(X_train, Y_train)
+
+    def predict(self, user_X):
         brand, year, miles = user_X
         input_data = {col: 0 for col in X.columns}
         input_data["Year"] = year
