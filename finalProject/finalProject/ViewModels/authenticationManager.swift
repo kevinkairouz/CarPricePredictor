@@ -10,7 +10,6 @@ import Supabase
 import Combine
 
 
-//MARK: May change String returns in function header to Bool to make auth bugs easier to detect
 
 
 class authManager: ObservableObject {

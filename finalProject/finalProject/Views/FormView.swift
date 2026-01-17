@@ -37,6 +37,7 @@ struct FormView: View {
     let categories: [String] = ["Brand", "Year", "Miles"]
     
     @StateObject var api_manager = apiFetcher()
+    @StateObject var db = DatabaseManager()
     
     
     var body: some View {
@@ -126,8 +127,11 @@ struct FormView: View {
                             X_input = CarInfo(Brand: BrandSubmitted, Year: y ?? 0 , Miles: m ?? 0)
                             Task{
                                 
+                                try await db.sendCarInfo(info: X_input)
                                 let res = try await api_manager.fetchData(X: X_input)
                                 predictedPrice = res
+                                let r = Result(Price: res)
+                                try await db.sendResult(price: r)
                                 showPredictionScreen.toggle()
                             }
                             
