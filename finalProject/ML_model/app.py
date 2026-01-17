@@ -16,8 +16,8 @@ def makePrediction():
         brand = json_data.get("Brand") 
         year = json_data.get("Year") 
         miles = json_data.get("Miles") 
-        user_X = np.array([brand, year, miles])
-        # user_X = [brand, year, miles] 
+        
+        user_X = [brand, year, miles] 
         prediction_for_user = CodeyCopy.predict(user_X)  
         response = {"Price": prediction_for_user} 
         print("you have succesfully made a prediction and sent to app")
