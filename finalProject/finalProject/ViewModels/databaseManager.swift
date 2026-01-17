@@ -7,18 +7,18 @@
 
 import Foundation
 import Combine
+import Supabase
+
 
 class DatabaseManager: authManager {
     
-    func sendCarInfo() async throws -> Bool {
-        return true
+    
+    func sendCarInfo(info: CarInfo) async throws {
+        try await client.from("car_data").insert(info).execute()
     }
     
-    func sendResult() async throws -> Bool {
-        return true
+    func sendResult(price: Result) async throws {
+        try await client.from("results").insert(price).execute()
     }
-    
-    
-    
     
 }
