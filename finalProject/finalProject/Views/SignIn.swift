@@ -6,7 +6,7 @@
 //
 
 
-//MARK: create sign in with apple, sign in with apple flow and copy paste your functions from prior project so app can be published in the app store 
+
 import SwiftUI
 import AuthenticationServices
 
@@ -27,7 +27,7 @@ struct ContentView: View {
     
     @State var popUpMessage: String = ""
     
-//    @State var showFormView: Bool = false
+    @State var showFormView: Bool = false
     
     
     @StateObject var authenManger = authManager()
@@ -90,8 +90,8 @@ struct ContentView: View {
                                 let res = try await authenManger.signIn(email: emailSubmitted, password: passwordSubmitted)
                                 
                                 if res == true{
-                                    isSignedIn = true
-//                                    showFormView.toggle()
+                                        //MARK: use the toggle
+                                   showFormView.toggle()
                                 }
                                 else{
                                     popUpMessage = "Something Wrong"
@@ -108,9 +108,10 @@ struct ContentView: View {
                         .foregroundStyle(.black)
                         .fontWeight(.black)
                         .shadow(radius: 10)
-//                        .fullScreenCover(isPresented: $showFormView) {
-//                            FormView()
-//                        }
+                        //MARK: use the fullscreencover
+                        .fullScreenCover(isPresented: $showFormView) {
+                            FormView()
+                        }
                         
                         
                     }.padding(.bottom, 200)

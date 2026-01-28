@@ -151,7 +151,7 @@ struct PredictionView: View {
                 .background(.teal)
                 .foregroundStyle(.black)
                 .shadow(radius: 10)
-                .cornerRadius(12)
+                .cornerRadius(12) 
                 .fullScreenCover(isPresented: $showOB) {
                     startView()
                 }
