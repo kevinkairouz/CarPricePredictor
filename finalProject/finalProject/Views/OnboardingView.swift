@@ -13,6 +13,8 @@ struct startView: View{
     
 //    @AppStorage("completeOB") var completeOB = false
 //    @AppStorage("isSignedIn") var isSignedIn = false
+    
+    //MARK: in the future we can add a deep learning framework so people can upload image from camera 
 
     
     
@@ -23,23 +25,23 @@ struct startView: View{
                 [0.0, 0.5], [1.0,0.5],
                 [0.0, 1.0], [1.0, 1.0]], colors: [.green, .gray, .black, .gray, .gray, .green]).ignoresSafeArea()
             
-            if !completeOB{
+        
                 TabView {
                     OnboardingView()
                     moneyOnboardingView()
                     youReadyView()
                 }.tabViewStyle(.page)
             }
-            else if !isSignedIn{
-                ContentView()
-            }
-            else{
-                FormView()
-            }
+//            else if !isSignedIn{
+//                ContentView()
+//            }
+//            else{
+//                FormView()
+//            }
         }
         
     }
-}
+
 
 struct OnboardingView: View {
     
