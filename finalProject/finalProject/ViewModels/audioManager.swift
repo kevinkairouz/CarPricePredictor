@@ -20,6 +20,7 @@ final class audioManager: ObservableObject {
             do{
                 soundEffectPlayer = try AVAudioPlayer(contentsOf: url)
                 soundEffectPlayer?.play()
+                soundEffectPlayer?.volume = 0.18
             }
             catch{
                 print(error.localizedDescription)
