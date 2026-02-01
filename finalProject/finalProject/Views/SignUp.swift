@@ -102,7 +102,7 @@ struct SignUp: View {
                         .fontWeight(.black)
                         .shadow(radius: 10)
                         .fullScreenCover(isPresented: $showFormView) {
-                            FormView()
+                            MenuView()
                         }
                         
                         

@@ -110,7 +110,7 @@ struct ContentView: View {
                         .shadow(radius: 10)
                         //MARK: use the fullscreencover
                         .fullScreenCover(isPresented: $showFormView) {
-                            FormView()
+                           MenuView()
                         }
                         
                         

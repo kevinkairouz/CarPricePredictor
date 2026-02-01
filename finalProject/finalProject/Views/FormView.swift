@@ -20,6 +20,30 @@ import SwiftUI
 
 import SwiftUI
 
+
+struct MenuView: View{
+    @State var color1: Color = .green
+    @State var color2: Color = .gray
+    
+    var body: some View{
+        ZStack{
+            LinearGradient(colors: [color1, color2], startPoint: .top, endPoint: .bottomTrailing).ignoresSafeArea().animation(.easeInOut.speed(0.25).repeatForever(autoreverses: true), value: color1)
+            
+            TabView {
+                Tab("Prediction", systemImage: "car.fill") {
+                        FormView()
+                }
+                Tab("Tutorial", systemImage: "questionmark.circle") {
+                       TutorialView()
+                }
+            }.tint(.black)
+        }
+      
+    }
+    
+    
+}
+
 struct FormView: View {
     
     @State var color1: Color = .green
@@ -177,7 +201,7 @@ struct FormView: View {
 }
 
 #Preview {
-    FormView()
+    MenuView()
 }
 
 
