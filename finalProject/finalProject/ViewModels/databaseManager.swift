@@ -18,13 +18,17 @@ struct r: Codable {
 struct p: Codable{
     let amount: Float
 }
-//
-//enum projection: CodingKey {
-//     Good:
-//}
-//considering enum for hey this is a good price
 
-//considering
+struct c: Codable{
+    let brand: String
+    let year: Int
+}
+
+struct cList: Codable{
+    let info: [c]
+}
+
+
 
 
 class DatabaseManager: ObservableObject {
@@ -44,4 +48,17 @@ class DatabaseManager: ObservableObject {
         try await auth.client.from("results").insert(price).execute()
     }
     
+    func findOldestCar() async throws -> c {
+        
+        let res: [c] = try await auth.client.from("car_data").select("brand,year").order("year", ascending: true).limit(1).execute().value
+        return res[0]
+    }
+    
+    func findNewestCar() async throws -> c {
+        let res: [c] = try await auth.client.from("car_data").select("brand,year").order("year", ascending: false).limit(1).execute().value
+        return res[0]
+        
+    }
+    
 }
+
