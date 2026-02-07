@@ -89,7 +89,8 @@ struct SignUp: View {
                                     showFormView.toggle()
                                 }
                                 else{
-                                    popUpMessage = "Something Wrong"
+                                    showAlert = true
+//                                    popUpMessage = "Something Wrong"
                                 }
                                 
                             }
@@ -97,6 +98,11 @@ struct SignUp: View {
                         } label: {
                             Text("Sign-In")
                         }
+                        .alert("Sign-In Failure", isPresented: $showAlert, actions: {
+                            
+                        },message: {
+                            Text("Invalid Email or Password")
+                        })
                         .frame(width: 330, height: 60)
                         .background(LinearGradient(colors: [.gray, .green], startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(12)

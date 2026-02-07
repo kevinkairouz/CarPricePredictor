@@ -95,8 +95,8 @@ struct ContentView: View {
                                    showFormView.toggle()
                                 }
                                 else{
-                                    showAlert.toggle()
-                                    popUpMessage = "Something Wrong"
+                                    showAlert = true
+//                                    popUpMessage = "Something Wrong"
                                 }
                                 
                             }
@@ -104,6 +104,11 @@ struct ContentView: View {
                         } label: {
                             Text("Sign-In")
                         }
+                        .alert("Sign-In Failure", isPresented: $showAlert, actions: {
+                            
+                        },message: {
+                            Text("Invalid Email or Password")
+                        })
                         .frame(width: 330, height: 60)
                         .background(.green)
                         .cornerRadius(12)
@@ -118,9 +123,6 @@ struct ContentView: View {
                         
                         
                     }.padding(.bottom, 200)
-//                        .alert("Invalid Credientials", isPresented: $showAlert) {
-//                        Text("Error Signing In")
-//                    }
                     
                     VStack{
                         Spacer()
