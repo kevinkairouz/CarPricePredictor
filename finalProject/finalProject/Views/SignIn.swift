@@ -28,6 +28,7 @@ struct ContentView: View {
     @State var popUpMessage: String = ""
     
     @State var showFormView: Bool = false
+    @State var showAlert: Bool = false 
     
     
     @StateObject var authenManger = authManager()
@@ -94,6 +95,7 @@ struct ContentView: View {
                                    showFormView.toggle()
                                 }
                                 else{
+                                    showAlert.toggle()
                                     popUpMessage = "Something Wrong"
                                 }
                                 
@@ -108,6 +110,7 @@ struct ContentView: View {
                         .foregroundStyle(.black)
                         .fontWeight(.black)
                         .shadow(radius: 10)
+                        
                         //MARK: use the fullscreencover
                         .fullScreenCover(isPresented: $showFormView) {
                            MenuView()
@@ -115,6 +118,9 @@ struct ContentView: View {
                         
                         
                     }.padding(.bottom, 200)
+//                        .alert("Invalid Credientials", isPresented: $showAlert) {
+//                        Text("Error Signing In")
+//                    }
                     
                     VStack{
                         Spacer()

@@ -23,6 +23,8 @@ struct SignUp: View {
     @State var popUpMessage: String = ""
     
     @State var showFormView: Bool = false
+    @State var showAlert: Bool = false
+    //MARK: need to show alert for when something goes wrong or possibly not bc it is the sign up 
     
     
     @StateObject var authenManger = authManager()

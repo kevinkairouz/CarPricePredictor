@@ -11,8 +11,7 @@ import SwiftUI
 struct startView: View{
     @StateObject var audio_manager = audioManager()
     
-//    @AppStorage("completeOB") var completeOB = false
-//    @AppStorage("isSignedIn") var isSignedIn = false
+
     
     //MARK: in the future we can add a deep learning framework so people can upload image from camera 
 
@@ -32,12 +31,7 @@ struct startView: View{
                     youReadyView()
                 }.tabViewStyle(.page)
             }
-//            else if !isSignedIn{
-//                ContentView()
-//            }
-//            else{
-//                FormView()
-//            }
+
         }
         
     }
