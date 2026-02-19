@@ -92,6 +92,8 @@ struct moneyOnboardingView: View {
     
     @State var message1: String = ""
     @State var message2: String = ""
+    @State var isMoving = false
+    @State var movement = 0
     
     @State var shadowAmount: Int = 0
     var body: some View {
@@ -105,6 +107,8 @@ struct moneyOnboardingView: View {
             VStack{
                 Spacer()
                 Image("moneyOB").resizable().frame(width: 550, height: 300).shadow(color: .green, radius: CGFloat(shadowAmount)).animation(.smooth.speed(0.62).repeatForever(autoreverses: true), value: shadowAmount)
+                    .offset(x: isMoving ? -10 : 10)
+                    .animation(.bouncy.speed(0.3).repeatForever(autoreverses: true), value: isMoving)
             }.padding(.bottom, 200)
             
             VStack{
@@ -136,6 +140,7 @@ struct moneyOnboardingView: View {
                     message1 = "Check to see"
                     message2 = "What your car cashes for"
                     shadowAmount += 100
+                    isMoving.toggle()
                 }
             
         }
